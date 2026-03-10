@@ -19,6 +19,12 @@ if (-not (Get-Command vim -ErrorAction SilentlyContinue)) {
     }
 }
 
+# Backup existing vimrc
+if (Test-Path $VimrcPath) {
+    Copy-Item $VimrcPath "$VimrcPath.bak"
+    Write-Host "Backed up existing .vimrc to .vimrc.bak"
+}
+
 # Download vimrc
 Invoke-WebRequest -Uri $VimrcUrl -OutFile $VimrcPath
 Write-Host "Done. Run 'vim' - plugins will auto-install on first launch."

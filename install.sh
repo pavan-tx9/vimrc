@@ -28,5 +28,6 @@ install_vim() {
 
 command -v vim &>/dev/null || install_vim
 
+[ -f ~/.vimrc ] && cp ~/.vimrc ~/.vimrc.bak && echo "Backed up existing .vimrc to .vimrc.bak"
 curl -fLo ~/.vimrc "$VIMRC_URL"
 echo "Done. Run 'vim' — plugins will auto-install on first launch."
